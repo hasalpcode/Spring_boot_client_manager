@@ -5,9 +5,7 @@ import org.springframework.stereotype.Repository;
 
 import com.mypersproject.apigestionclient.model.Client;
 
+
 @Repository
-
-public interface ClientRepository extends CrudRepository<Client, Long>{
-
-	
+public interface ClientRepository extends CrudRepository<Client, Long>{	
 }

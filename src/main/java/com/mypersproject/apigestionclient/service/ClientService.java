@@ -12,7 +12,6 @@ import lombok.Data;
 
 @Data
 @Service
-
 public class ClientService {
 	@Autowired
 	private ClientRepository cRepository;
@@ -26,7 +25,7 @@ public class ClientService {
 	}
 	
 	public void deleteClient(final Long id){
-		 cRepository.deleteById(id);
+		cRepository.deleteById(id);
 	}
 	
 	public Client saveClient(Client client) {
