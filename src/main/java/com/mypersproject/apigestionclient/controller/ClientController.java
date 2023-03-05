@@ -8,6 +8,8 @@ import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.mypersproject.apigestionclient.model.Client;
@@ -22,26 +24,29 @@ public class ClientController {
 
 	@Autowired
 	private ClientService cService;
+	// private PlatformTransactionManager ptm;
+
 	
-	@GetMapping("/clients")
+	@RequestMapping(value ="/clients",method=RequestMethod.GET)
 	public Iterable<Client> index(){
 		return cService.getAllClient();
 	}
 
-	@GetMapping("/client/{id}")
+	@RequestMapping(value ="/clients/{id}",method=RequestMethod.GET)
 	public Optional<Client> show(@PathVariable Long id){
 		return cService.getClient(id);
 	}
 	
-	@PostMapping("/create_client")
+	@RequestMapping(value ="/clients",method=RequestMethod.POST)
 	public Client store(@RequestBody Client client){
 		return cService.saveClient(client);
 	}
 
-	@DeleteMapping("/client/{id}")
+	@RequestMapping(value ="/client/{id}",method=RequestMethod.DELETE)
 	public boolean destroy(@PathVariable Long id){
 		cService.deleteClient(id);
 		return true;
 	}
 	
+
 }
