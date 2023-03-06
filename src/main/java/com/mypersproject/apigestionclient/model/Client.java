@@ -34,9 +34,8 @@ public class Client implements Serializable {
 	private String telephone;
 	private String adresse; 
 
-	@OneToMany(cascade = CascadeType.ALL,mappedBy="client",fetch = FetchType.LAZY)
+	@OneToMany(cascade = CascadeType.ALL,mappedBy="client",orphanRemoval = true)
 	@JsonIgnore
-	@JsonSetter	
 	private  Collection<Commande> commandes;
 	
 }

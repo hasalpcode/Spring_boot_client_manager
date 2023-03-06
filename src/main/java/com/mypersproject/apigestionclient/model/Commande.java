@@ -32,8 +32,10 @@ public class Commande {
 	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	@Column(name = "ref_commande")
 	private Long id;
-	@ManyToOne
+	@ManyToOne( fetch=FetchType.LAZY, targetEntity = Client.class)
 	@JoinColumn(name = "idclient")
+	@JsonSetter	
+	@JsonIgnore
 	private Client client;
 	@Temporal(TemporalType.DATE)
 	private LocalDate date_commande;

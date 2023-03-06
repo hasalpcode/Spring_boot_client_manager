@@ -3,6 +3,8 @@ package com.mypersproject.apigestionclient.controller;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.CrossOrigin;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestBody;
@@ -18,22 +20,24 @@ import lombok.RequiredArgsConstructor;
 @RestController
 @RequiredArgsConstructor
 @CrossOrigin
-public class CommandeController {
+public class CommandeController  {
 	@Autowired
 	private CommandeService cmdService;
 
 	@RequestMapping(value ="/commandes",method=RequestMethod.GET)
-	public Iterable<Commande> index(){
-		return cmdService.getAllCommande();
+	public ResponseEntity< Iterable<Commande>> index(){
+		Iterable<Commande> commandes = cmdService.getAllCommande();
+		return new ResponseEntity<>(commandes, HttpStatus.OK) ;
 	}
 
 	@RequestMapping(value ="/commandes/{id}",method=RequestMethod.GET)
-	public Optional<Commande> show(@PathVariable Long id){
+	public Commande show(@PathVariable Long id){
 		return cmdService.getCommande(id);
 	}
 	
 	@RequestMapping(value ="/commandes",method=RequestMethod.POST)
 	public Commande store(@RequestBody Commande commande){
+		System.out.println("idclient est:"+commande.getId());
 		return cmdService.saveCommande(commande);
 	}
 
